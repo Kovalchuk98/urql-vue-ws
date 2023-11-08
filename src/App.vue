@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { gql, useQuery } from '@urql/vue';
+import { watch } from "vue"
+import { gql, useQuery, useSubscription } from '@urql/vue';
 
 const result = useQuery({
       query: gql`
@@ -10,6 +11,35 @@ const result = useQuery({
         }
       `
     });
+
+const document = gql`
+      subscription onMessageAdded {
+        messageNew {
+        id
+        text
+        dialog {
+          id
+          visitor {
+            id
+          }
+          }
+        }
+      }
+    `
+
+    const { data: newMessage } = useSubscription({
+      query: document,
+    })
+
+    watch(
+      newMessage,
+      data => {
+        console.log("New message received:", data.newMessage)
+      },
+      // {
+      //   lazy: true // Don't immediately execute handler
+      // }
+    )
 
 </script>
 
@@ -24,7 +54,9 @@ const result = useQuery({
   <div>
     {{ result?.data.value?.visitors }}
   </div>
-
+  <div>
+    new message block  <br>{{ newMessage }}
+  </div>
   <main>
     <TheWelcome />
   </main>
