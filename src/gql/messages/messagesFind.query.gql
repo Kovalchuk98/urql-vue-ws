@@ -1,0 +1,5 @@
+query MessagesFind($dialogId: Float!, $limit: Float, $cursor: Float, $orderBy: MessageCountOrderByAggregateInput ) {
+  messagesFind(dialogId: $dialogId, limit: $limit, cursor: $cursor, orderBy: $orderBy) {
+    ... MessagesParts
+  }
+}

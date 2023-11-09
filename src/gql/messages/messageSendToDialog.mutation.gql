@@ -1,0 +1,7 @@
+mutation MessageSendToDialog($input: MessageSendToDialog!) {
+  messageSendToDialog(input: $input) {
+    id
+    createdAt
+    text
+  }
+}

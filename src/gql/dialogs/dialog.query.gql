@@ -1,0 +1,5 @@
+query Dialog($id: Float!, $limit: Float, $orderBy: MessageCountOrderByAggregateInput) {
+     dialog(id: $id){
+          ...DialogParts
+     }
+}

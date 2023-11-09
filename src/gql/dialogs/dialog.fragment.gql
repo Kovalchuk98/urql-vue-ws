@@ -1,0 +1,10 @@
+fragment DialogParts on DialogModel {
+    id
+    visitor {
+      id
+    }
+    # TODO Переназвать $limit -> $messagesLimit
+    messages(orderBy: $orderBy, limit: $limit) {
+    ... MessagesParts
+    }
+}

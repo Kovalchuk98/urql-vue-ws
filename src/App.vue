@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { watch } from "vue"
 import { gql, useQuery, useSubscription } from '@urql/vue';
+import { SortOrder, useDialogQuery } from "./gql/dto"
 
-const result = useQuery({
-      query: gql`
-        {
-          visitors {
-          id
-          }
-        }
-      `
-    });
+const { data: result,  } = useDialogQuery({
+  variables: {
+    id: 1,
+    limit: 1,
+    orderBy: {
+      createdAt: SortOrder.Desc
+    }
+  }
+})
 
 const document = gql`
       subscription onMessageAdded {
@@ -52,7 +53,7 @@ const document = gql`
     </div>
   </header>
   <div>
-    {{ result?.data.value?.visitors }}
+    {{ result?.dialog.messages }}
   </div>
   <div>
     new message block  <br>{{ newMessage }}

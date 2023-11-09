@@ -1,0 +1,11 @@
+query Dialogs($orderBy: MessageCountOrderByAggregateInput, $limit: Float, $whereNewDialogs: DialogWhereInput, $cursor: Float, $whereActiveDialogs: DialogWhereInput, $whereArchiveDialogs: DialogWhereInput) {
+  newDialogs: dialogs(cursor: $cursor, where: $whereNewDialogs) {
+    ...DialogParts
+  }
+  activeDialogs: dialogs(cursor: $cursor, where: $whereActiveDialogs) {
+    ... DialogParts
+  }
+  archiveDialogs: dialogs(cursor: $cursor, where: $whereArchiveDialogs) {
+    ...DialogParts
+  }
+}

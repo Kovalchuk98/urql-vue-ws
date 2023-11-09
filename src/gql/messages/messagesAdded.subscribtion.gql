@@ -1,0 +1,12 @@
+subscription MessageAdded {
+  messageNew {
+      ... MessagesParts
+
+      dialog {
+        id
+        visitor {
+          id
+        }
+      }
+  }
+}

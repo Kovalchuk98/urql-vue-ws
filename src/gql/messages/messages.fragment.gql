@@ -1,0 +1,16 @@
+fragment MessagesParts on MessageModel {
+    id
+    text
+    createdAt 
+    sender {
+      ... on UserModel {
+        __typename
+        id
+        username
+      }
+      ... on VisitorModel {
+        __typename
+        id
+      }
+    }
+}
